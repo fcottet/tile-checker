@@ -1,4 +1,4 @@
-$(document).ready(function(){
+document.addEventListener("DOMContentLoaded", function(event) {
     min = function(a,b) {
         if (a>b) return b;
         return a;
@@ -52,7 +52,8 @@ $(document).ready(function(){
     };
 
 
-    var mymap = L.map('mapid', {zoomSnap: 0.5, zoomDelta: 0.5, wheelPxPerZoomLevel:100, wheelDebounceTime:20});
+    //var mymap = L.map('mapid', {zoomSnap: 0.5, zoomDelta: 0.5, wheelPxPerZoomLevel:100, wheelDebounceTime:20});
+    var mymap = map;
     var routePolyline = false;
     var actualTrace = false;
 
@@ -234,44 +235,44 @@ $(document).ready(function(){
     };
 
     { // CONFIG-STORAGE
-        $('select.config-storage').each(function(){
-            let id = this.id;
-            let storage = localStorage.getItem(id)
-            if (storage) {
-                let val = $(this).find('option[data-value="'+storage+'"]').val();
-                $(this).val(val);
-            }
+        // document.querySelector('select.config-storage').each(function(){
+        //     let id = this.id;
+        //     let storage = localStorage.getItem(id)
+        //     if (storage) {
+        //         let val = $(this).find('option[data-value="'+storage+'"]').val();
+        //         $(this).val(val);
+        //     }
 
-            $(this).on('change', function(e) {
-                e.preventDefault();
-                $(this).data('value', $(this).find(':selected').data('value'));
-                localStorage.setItem(this.id, $(this).find(':selected').data('value'));
-            });
-        });
+        //     $(this).on('change', function(e) {
+        //         e.preventDefault();
+        //         $(this).data('value', $(this).find(':selected').data('value'));
+        //         localStorage.setItem(this.id, $(this).find(':selected').data('value'));
+        //     });
+        // });
 
-        $('input[type="text"].config-storage,input[type="number"].config-storage').each(function(){
-            let id = this.id;
-            $(this).val(localStorage.getItem(id) || "");
+        // document.querySelector('input[type="text"].config-storage,input[type="number"].config-storage').each(function(){
+        //     let id = this.id;
+        //     $(this).val(localStorage.getItem(id) || "");
 
-            $(this).on('change', function(e) {
-                e.preventDefault();
-                localStorage.setItem(this.id, $(this).val());
-            });
-        });
+        //     $(this).on('change', function(e) {
+        //         e.preventDefault();
+        //         localStorage.setItem(this.id, $(this).val());
+        //     });
+        // });
 
-        $('input[type="checkbox"].config-storage').each(function(){
-            let id = this.id;
-            $(this).prop('checked', (localStorage.getItem(id) || "true") == "true");
+        // document.querySelector('input[type="checkbox"].config-storage').each(function(){
+        //     let id = this.id;
+        //     $(this).prop('checked', (localStorage.getItem(id) || "true") == "true");
 
-            $(this).on('change', function(e) {
-                e.preventDefault();
-                localStorage.setItem(this.id, this.checked);
-            });
-        });
+        //     $(this).on('change', function(e) {
+        //         e.preventDefault();
+        //         localStorage.setItem(this.id, this.checked);
+        //     });
+        // });
 
-        $('.request-route').on("change", function() {
-            request_route();
-        });
+        // document.querySelector('.request-route').on("change", function() {
+        //     request_route();
+        // });
     } // CONFIG-STORAGE
 
     
@@ -300,7 +301,7 @@ $(document).ready(function(){
         }
         load_marker("start");
         load_marker("end");
-        update_circle();
+        //update_circle();
 
         try {
             selected_tiles = JSON.parse(localStorage.getItem("selected_tiles")) || []

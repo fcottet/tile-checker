@@ -5,7 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
-    <script src="tile.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.74.1/dist/L.Control.Locate.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.74.1/dist/L.Control.Locate.min.js" charset="utf-8"></script>
+    
+    <script src="./tile.js"></script>
 
     <style>
       html, body {
@@ -36,6 +41,16 @@
       L.control.scale({metric: true}).addTo(map);
 
       L.control.scale
+
+      lc = L.control.locate({
+          keepCurrentZoomLevel: 'false',
+          locateOptions: {
+               enableHighAccuracy: true
+          },
+          strings: {
+              title: "Show me where I am, yo!"
+          }
+      }).addTo(map);
     </script>
   </body>
 </html>
